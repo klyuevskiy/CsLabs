@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GeometricObjects;
 using System.Windows.Forms;
+using InputString;
 
 namespace MainForm
 {
