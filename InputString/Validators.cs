@@ -16,7 +16,7 @@ namespace MainForm
     }
 
     // Валидатор проверяющий, что строка число типа double
-    class DoubleValidator : IStringValidator
+    public class DoubleValidator : IStringValidator
     {
         string errorMessage = "";
         public string ErrorMessage { get => errorMessage; }
@@ -36,9 +36,9 @@ namespace MainForm
     }
 
     // Валидатор, проверяющий радиус
-    class RadiusValidator : IStringValidator
+    public class NotNegativeDoubleValidator : IStringValidator
     {
-        // радиус типа double => используем при этом валидатор на double
+        // число типа double => используем при этом валидатор на double
         DoubleValidator doubleValid = new DoubleValidator();
 
         string errorMessage;
@@ -59,7 +59,7 @@ namespace MainForm
             bool isValid = Double.Parse(str) >= 0;
 
             if (!isValid)
-                errorMessage = "Радиус меньше 0";
+                errorMessage = "Число меньше 0";
 
             return isValid;
         }

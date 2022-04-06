@@ -13,7 +13,7 @@ namespace MainForm
     // класс для ввода строки, которая соответсвует валидатору
     // вызывается через ShowDialog
 
-    public partial class InputString : Form
+    public partial class InputStringDialog : Form
     {
         // валидатор строки
         IStringValidator validator;
@@ -27,7 +27,7 @@ namespace MainForm
         }
 
         // в конструкторе берём валидатор и сообщения для ввода
-        public InputString(IStringValidator validator, string message = "Введите строку")
+        public InputStringDialog(IStringValidator validator, string message = "Введите строку")
         {
             InitializeComponent();
 

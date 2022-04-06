@@ -1,7 +1,7 @@
 ﻿
 namespace MainForm
 {
-    partial class InputString
+    partial class InputStringDialog
     {
         /// <summary>
         /// Required designer variable.

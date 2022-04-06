@@ -63,7 +63,7 @@ namespace MainForm
         private void changeCircleRadiusButton_Click(object sender, EventArgs e)
         {
             // диалоговое окно для ввода радиуса, задаём проверку на радиус
-            InputString inputRadius = new InputString(new RadiusValidator(), "Введите радиус");
+            InputStringDialog inputRadius = new InputStringDialog(new NotNegativeDoubleValidator(), "Введите радиус");
 
             if (inputRadius.ShowDialog() == DialogResult.OK)
             {

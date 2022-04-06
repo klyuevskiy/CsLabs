@@ -15,8 +15,8 @@ namespace MainForm
         {
             // создаём диалоговые окна для ввода координат
 
-            InputString inputX = new InputString(new DoubleValidator(), "Введите X координату"),
-                inputY = new InputString(new DoubleValidator(), "Введите Y координату");
+            InputStringDialog inputX = new InputStringDialog(new DoubleValidator(), "Введите X координату"),
+                inputY = new InputStringDialog(new DoubleValidator(), "Введите Y координату");
 
             // возвращаем точку если оба диалго вернули OK
 
@@ -38,7 +38,7 @@ namespace MainForm
         {
             Point center = inputPoint.Input();
 
-            InputString inputRadius = new InputString(new RadiusValidator(), "Введите радиус");
+            InputStringDialog inputRadius = new InputStringDialog(new NotNegativeDoubleValidator(), "Введите радиус");
 
             // Создаём круг если ввод успешный 
             if (center != null && inputRadius.ShowDialog() == DialogResult.OK)
