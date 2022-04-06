@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace InputString
 {
+    // валидатор, что целое неотрицательное число
     public class NotNegativeIntValidator : IStringValidator
     {
         // число типа int => используем при этом валидатор на int

@@ -8,6 +8,7 @@ namespace Sportsmans
 {
     public class DerivedSportsman : BaseSportsman
     {
+        // доп поле
         public bool RankedFirst { get; set; }
 
         public DerivedSportsman()
@@ -25,6 +26,8 @@ namespace Sportsmans
         {
             return base.Quality() * (RankedFirst ? 1.5 : 1);
         }
+
+        // ввод вывод вызываем у базового класса и вводим(выводим) доп. поле
 
         public override void Print(ISportsmanPrinter printer)
         {

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Sportsmans
 {
+    // интерфейсы для ввода и вывода классов
+
     public interface ISportsmanPrinter
     {
         void PrintLastName(string lastName);

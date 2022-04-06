@@ -28,6 +28,7 @@ namespace Main
 
         private void printBaseSportsmanButton_Click(object sender, EventArgs e)
         {
+            // при выводе, когда считвается качество может быть вызвано иключение - так как иначе будет деление на 0
             try
             {
                 baseSportsman.Print(new FormSportsmanPrinter(baseSportsmanLastName, baseSportsmanCompetitionsNumber,
@@ -46,6 +47,7 @@ namespace Main
 
         private void printDerivedSportsmanButton_Click(object sender, EventArgs e)
         {
+            // при выводе, когда считвается качество может быть вызвано иключение - так как иначе будет деление на 0
             try
             {
                 derivedSportsman.Print(new FormSportsmanPrinter(derivedSportsmanLastName, derivedSportsmanCompetitionsNumber,

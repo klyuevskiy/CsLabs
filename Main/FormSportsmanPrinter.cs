@@ -10,12 +10,14 @@ namespace Main
 {
     class FormSportsmanPrinter : ISportsmanPrinter
     {
+        // text box куда будем выводить инфу
         TextBox lastNameTextBox,
             competitionsNumberTextBox,
             competitionsPlacesSumTextBox,
             qualityTextBox,
             rankedFirstTextBox;
 
+        // конструктор для класса 1 уровня, без флага занял ли первое место
         public FormSportsmanPrinter(TextBox lastNameTextBox, TextBox competitionsNumberTextBox,
             TextBox competitionsPlacesSumTextBox, TextBox qualityTextBox)
         {
@@ -25,6 +27,7 @@ namespace Main
             this.qualityTextBox = qualityTextBox;
         }
 
+        // конструктор для класса 2 уровня
         public FormSportsmanPrinter(TextBox lastNameTextBox, TextBox competitionsNumberTextBox,
             TextBox competitionsPlacesSumTextBox, TextBox qualityTextBox, TextBox rankedFirstTextBox)
         {

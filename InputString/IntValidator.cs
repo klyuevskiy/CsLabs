@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace InputString
 {
+    // валидатор, что введено целое число
     public class IntValidator : IStringValidator
     {
         string errorMessage;

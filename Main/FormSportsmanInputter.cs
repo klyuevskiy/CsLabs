@@ -11,6 +11,7 @@ namespace Main
 {
     class FormSportsmanInputter : ISportsmanInputter
     {
+        // ввод фамилии - вызов формы для ввода строки с проверкой на слово
         public string InputLastName()
         {
             InputStringDialog input = new InputStringDialog(new WordValidator(), "Введите фамилию");
@@ -21,7 +22,7 @@ namespace Main
             return "";
         }
 
-
+        // ввод кол-во соревнований - вызов формы ввода строки с проверкой на неотрицательное целое число
         public int InputCompetitionsNumber()
         {
             InputStringDialog input = new InputStringDialog(new NotNegativeIntValidator(), "Введите количество соревнований");
@@ -32,6 +33,7 @@ namespace Main
             return 0;
         }
 
+        // аналогично предыдущему
         public int InputCompetitionsPlacesSum()
         {
             InputStringDialog input = new InputStringDialog(new NotNegativeIntValidator(), "Введите сумму мест, занятых на соревнованиях");
@@ -42,6 +44,7 @@ namespace Main
             return 0;
         }
 
+        // вызов Message Box с кнопками Yes No
         public bool InputRankedFirst()
         {
             return MessageBox.Show("Занял ли хоть раз первое место?", "", MessageBoxButtons.YesNo) == DialogResult.Yes;

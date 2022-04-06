@@ -8,9 +8,12 @@ namespace Sportsmans
 {
     public class BaseSportsman
     {
+        // фамилия, кол-во соревнований, сумма мест
         public string LastName { get; set; }
         public int CompetitionsNumber { get; set; }
         public int CompetitionsPlacesSum { get; set; }
+
+        // конструкторы
 
         public BaseSportsman()
         {
@@ -26,10 +29,15 @@ namespace Sportsmans
             CompetitionsPlacesSum = competitionsPlacesSum;
         }
 
+        // функция вычисления качества
         public virtual double Quality()
         {
+            // не забываем привести к double
             return (double)CompetitionsNumber / (double)CompetitionsPlacesSum;
         }
+
+        // ввод вывод осуществялется посредством реализации интерфейса
+        // можно будет тогда реализовать ввод вывод с формы, консоли и т.д., структура класса не поменяется
 
         public virtual void Print(ISportsmanPrinter printer)
         {
@@ -37,6 +45,7 @@ namespace Sportsmans
             printer.PrintCompetitionsNumber(CompetitionsNumber);
             printer.PrintCompetitionsPlacesSum(CompetitionsPlacesSum);
 
+            // произойдёт деление на 0, что недопустимо
             if (CompetitionsPlacesSum == 0)
                 throw new InvalidOperationException("Невозможно подсчитать качество без суммы мест за соревнования");
 
