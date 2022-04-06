@@ -1,5 +1,5 @@
 ﻿
-namespace MainForm
+namespace InputString
 {
     partial class InputStringDialog
     {
@@ -50,7 +50,7 @@ namespace MainForm
             this.inputStringTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.inputStringTextBox.Location = new System.Drawing.Point(12, 32);
             this.inputStringTextBox.Name = "inputStringTextBox";
-            this.inputStringTextBox.Size = new System.Drawing.Size(240, 26);
+            this.inputStringTextBox.Size = new System.Drawing.Size(377, 26);
             this.inputStringTextBox.TabIndex = 1;
             // 
             // okButton
@@ -67,7 +67,7 @@ namespace MainForm
             // cancelButton
             // 
             this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.cancelButton.Location = new System.Drawing.Point(157, 64);
+            this.cancelButton.Location = new System.Drawing.Point(149, 64);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(95, 40);
             this.cancelButton.TabIndex = 3;
@@ -75,16 +75,16 @@ namespace MainForm
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // InputString
+            // InputStringDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(264, 117);
+            this.ClientSize = new System.Drawing.Size(399, 117);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.inputStringTextBox);
             this.Controls.Add(this.messageLabel);
-            this.Name = "InputString";
+            this.Name = "InputStringDialog";
             this.Text = "Введите строку";
             this.ResumeLayout(false);
             this.PerformLayout();

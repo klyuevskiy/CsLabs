@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainForm
+namespace InputString
 {
     // класс для ввода строки, которая соответсвует валидатору
     // вызывается через ShowDialog
