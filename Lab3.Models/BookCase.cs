@@ -33,6 +33,15 @@ namespace Lab3.Models
             }
         }
 
+        public override double ArrangeDelivery()
+        {
+            // пусть дотсавка зависит от объёма товара
+            // также зависит от наличия дверцы - дверца + 200
+            // минимальная сумма доставки - 500, максимальная - 10000
+            return Math.Min((Volume() * 0.01 + 500), 10000) +
+                (HasDoor ? 200 : 0);
+        }
+
         // сколько книг помещается на одну полку
         public int HowManyBooksFitOnShelf(double bookWidth = 5)
         {

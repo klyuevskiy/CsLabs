@@ -84,12 +84,8 @@ namespace Lab3.Models
             }
         }
 
-        public double ArrangeDelivery()
-        {
-            // пусть дотсавка зависит от объёма товара
-            // минимальная сумма доставки - 500, максимальная - 10000
-            return Math.Min((Volume() * 0.01 + 500), 10000); 
-        }
+        // цена доставки зависит от типа шкафа
+        public abstract double ArrangeDelivery();
 
         public void Copy(IFurniture other)
         {
