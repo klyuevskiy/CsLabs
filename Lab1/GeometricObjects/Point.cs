@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace GeometricObjects
 {
+    //Создать объект класса Круг, используя классы Точка, Окружность
+
     // класс точка
     public class Point
     {
