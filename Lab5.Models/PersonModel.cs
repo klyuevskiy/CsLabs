@@ -48,11 +48,16 @@ namespace Lab5.Models
         // или есть ли больной, чтобы задать соответсвующие действия
         protected abstract void CheckEvents();
 
+        public bool IsCome()
+        {
+            // различие в 5 пикселя будет незаметно, но зато точно не будет двигаться на месте
+            return Math.Abs(X - ToX) < 5 && Math.Abs(Y - ToY) < 5;
+        }
+
         public void Go()
         {
             // в пункте назначения
-            // различие в 3 пикселя будет незаметно, но зато точно не будет двигаться на месте
-            if (Math.Abs(X - ToX) < 3  && Math.Abs(Y - ToY) < 3)
+            if (IsCome())
                 return;
 
             // определим как мы будем двигаться по координатам

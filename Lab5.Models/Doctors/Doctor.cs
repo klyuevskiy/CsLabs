@@ -32,7 +32,7 @@ namespace Lab5.Models
         // проверят дошёл до цели, если дошёл, то лечит
         async Task Heal()
         {
-            if (Math.Abs(X - ToX) < 3 && Math.Abs(Y - ToY) < 3)
+            if (IsCome())
             {
                 Notification($"Врач {LastName} {FirstName} лечит спортсмена " +
                         $"{sickSportsman.LastName} {sickSportsman.FirstName}");

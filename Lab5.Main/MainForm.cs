@@ -56,10 +56,6 @@ namespace Lab5.Main
             viewModels = new List<ViewModel>();
             viewModelsLocker = new object();
 
-            painter = new Painter(pictureBox, Color.FromArgb(128, 255, 128),
-                new Font(notificationTextBox.Font.FontFamily, 10f, notificationTextBox.Font.Style),
-                viewObjects, viewObjectsLocker, viewModels, viewModelsLocker);
-
             sportsmans = new List<Sportsman>();
             sportsmansLocker = new object();
 
@@ -71,17 +67,6 @@ namespace Lab5.Main
             maxCompetitionsNumber = (int)(pictureBox.Height / Properties.Resources.Stadium.Height);
 
             competitions = new List<Competition>();
-
-            // create buildings
-
-            hospital = new ViewObject(Properties.Resources.Hospital);
-            gym = new ViewObject(Properties.Resources.Gym);
-
-            SetBuildingsSize();
-
-            // add hospital, stadium, gym
-            viewObjects.Add(hospital);
-            viewObjects.Add(gym);
         }
 
         void Notification(string message)
@@ -224,18 +209,11 @@ namespace Lab5.Main
                 addCompatitionToolStripMenuItem.Enabled = false;
         }
 
-        private void startToolStripMenuItem_Click(object sender, EventArgs e)
+        void GenerateSportmans(int sportmansNumber)
         {
-            addSportsmanToolStripMenuItem.Enabled = true;
-            addDoctorToolStripMenuItem.Enabled = true;
-            startToolStripMenuItem.Enabled = false;
-            addCompatitionToolStripMenuItem.Enabled = true;
-
-            AddCompetition("Соревнование 1");
-
             // создадим несколько спорстменов, врачей, соревнование, запустим их в потоках
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < sportmansNumber; i++)
             {
                 var newSportsman = new Sportsman(Notification, gym.X, gym.Y)
                 {
@@ -249,15 +227,18 @@ namespace Lab5.Main
 
                 Task.Run(newSportsman.Start);
             }
+        }
 
+        void GenerateDoctors(int doctorsNumber)
+        {
             object[] doctorArgs = new object[]
-            { (Action<string>)Notification,
+           { (Action<string>)Notification,
                 hospital.X,
                 hospital.Y,
                 sportsmans,
                 sportsmansLocker };
 
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < doctorsNumber; i++)
             {
                 foreach (var item in doctorTypes)
                 {
@@ -270,6 +251,35 @@ namespace Lab5.Main
                     Task.Run(newDoctor.Start);
                 }
             }
+        }
+
+        private void startToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            addSportsmanToolStripMenuItem.Enabled = true;
+            addDoctorToolStripMenuItem.Enabled = true;
+            startToolStripMenuItem.Enabled = false;
+            addCompatitionToolStripMenuItem.Enabled = true;
+
+            painter = new Painter(pictureBox, Color.FromArgb(128, 255, 128),
+               new Font(notificationTextBox.Font.FontFamily, 10f, notificationTextBox.Font.Style),
+               viewObjects, viewObjectsLocker, viewModels, viewModelsLocker);
+
+            // create buildings
+
+            hospital = new ViewObject(Properties.Resources.Hospital);
+            gym = new ViewObject(Properties.Resources.Gym);
+
+            SetBuildingsSize();
+
+            // add hospital, stadium, gym
+            viewObjects.Add(hospital);
+            viewObjects.Add(gym);
+
+            AddCompetition("Соревнование 1");
+
+            GenerateSportmans(8);
+
+            GenerateDoctors(1);
 
             painter.Start();
         }

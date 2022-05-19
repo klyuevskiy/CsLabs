@@ -80,8 +80,7 @@ namespace Lab5.Models
                 lock (sportsmansLocker)
                 {
                     allSportmansCame = participatingSportsmans.FirstOrDefault(item =>
-                    Math.Abs(item.X - item.ToX) >= 3 &&
-                    Math.Abs(item.Y - item.ToY) >= 3) == null;
+                    !item.IsCome()) == null;
                 }
             }
         }
