@@ -30,14 +30,14 @@ namespace Lab5.Models
 
         // идти лечить
         // проверят дошёл до цели, если дошёл, то лечит
-        async Task Heal()
+        void Heal()
         {
             if (IsCome())
             {
                 Notification($"Врач {LastName} {FirstName} лечит спортсмена " +
                         $"{sickSportsman.LastName} {sickSportsman.FirstName}");
 
-                await Task.Delay(5 * 1000);
+                Task.Delay(5 * 1000).Wait();
 
                 sickSportsman.IsIll = false;
                 sickSportsman.IsLocked = false;

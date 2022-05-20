@@ -41,7 +41,7 @@ namespace Lab5.Models
 
         // делегат который будем вызвать в потоке
         // в зависимости от ситуации будем задавать нужный метод/функцию
-        protected Func<Task> DoSomething;
+        protected Action DoSomething;
 
         // проверка проиходящих сейчас событий
         // проверятся есть ли сейчас соревнование нппример
@@ -77,7 +77,7 @@ namespace Lab5.Models
         }
 
         // Start везде одинаковый, пока не закрыт всё ок, делаем что-то
-        public async override void Start()
+        public override void Start()
         {
             while (!IsCanceled)
             {
@@ -87,10 +87,9 @@ namespace Lab5.Models
                 CheckEvents();
                 Go();
 
-                if (DoSomething != null)
-                    await DoSomething();
+                DoSomething?.Invoke();
 
-                await Task.Delay(30);
+                Task.Delay(30).Wait();
             }
         }
     }

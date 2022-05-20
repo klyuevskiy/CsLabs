@@ -69,13 +69,13 @@ namespace Lab5.Models
             return participatingSportsmans.Count != 0;
         }
 
-        async Task WaitAllSportmans()
+        void WaitAllSportmans()
         {
             bool allSportmansCame = false; ;
 
             while (!allSportmansCame)
             {
-                await Task.Delay(100);
+                Task.Delay(100).Wait();
 
                 lock (sportsmansLocker)
                 {
@@ -85,16 +85,16 @@ namespace Lab5.Models
             }
         }
 
-        async Task DoCompetition()
+        void DoCompetition()
         {
             Notification($"В соревновании {Name} примут участие {participatingSportsmans.Count} спортсменов");
-            await WaitAllSportmans();
+            WaitAllSportmans();
 
             Notification($"Соревнование {Name} начинается");
             Notification($"Соревнование {Name} идёт");
 
             // видимость соревнования(типо сколько-то длится)
-            await Task.Delay(10 * 1000);
+            Task.Delay(10 * 1000).Wait();
         }
 
         void PrintWinSportsman(int place, Sportsman sportsman)
@@ -158,13 +158,13 @@ namespace Lab5.Models
             return winners;
         }
 
-        async Task WaitHeal(List<Sportsman> sickSportsmans)
+        void WaitHeal(List<Sportsman> sickSportsmans)
         {
             bool allHeal = true;
 
             do
             {
-                await Task.Delay(100);
+                Task.Delay(100).Wait();
 
                 allHeal = sickSportsmans.Count(sportsman => sportsman.IsIll) == 0;
 
@@ -203,7 +203,7 @@ namespace Lab5.Models
             return sickSportsmans;
         }
 
-        public async Task EndCompetition()
+        public void EndCompetition()
         {
             Notification($"Соревнование {Name} закончилось");
 
@@ -211,7 +211,7 @@ namespace Lab5.Models
 
             Notification($"Проходит цеременония награждения соревнования {Name}");
 
-            await Task.Delay(5000);
+            Task.Delay(5000).Wait();
 
             Notification($"Церемнония награждения соревнования {Name} закончена");
 
@@ -236,19 +236,19 @@ namespace Lab5.Models
 
                 PrintSickSportsmans(sickSportsmans);
                 Notification($"Пока все спортсены не выздоровят, соревнование {Name} не начнётся");
-                await WaitHeal(sickSportsmans);
+                WaitHeal(sickSportsmans);
 
                 Notification($"Соревнования {Name}: Все спортсмены вылечены!");
             }
         }
 
-        public override async void Start()
+        public override void Start()
         {
             while (!IsCanceled)
             {
                 Notification($"Скоро будет соревнование {Name}");
 
-                await Task.Delay(5 * 1000);
+                Task.Delay(5 * 1000).Wait();
 
                 if (!StartCompetition())
                 {
@@ -256,13 +256,13 @@ namespace Lab5.Models
                 }
                 else
                 {
-                    await DoCompetition();
+                    DoCompetition();
 
-                    await EndCompetition();   
+                    EndCompetition();   
                 }
 
                 // интервал времени между соревнованиями
-                await Task.Delay(10 * 1000);
+                Task.Delay(10 * 1000).Wait();
             }
         }
     }
