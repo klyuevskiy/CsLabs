@@ -9,8 +9,7 @@ namespace InputString
     // валидатор, что введено целое число
     public class IntValidator : IStringValidator
     {
-        string errorMessage;
-        public string ErrorMessage { get => errorMessage; }
+        public string ErrorMessage { get; private set; }
 
         public bool IsValid(string str)
         {
@@ -20,7 +19,7 @@ namespace InputString
 
             // строка не double настраиваем сообщение
             if (!isDouble)
-                errorMessage = "Введено не целое число";
+                ErrorMessage = "Введено не целое число";
 
             return isDouble;
         }

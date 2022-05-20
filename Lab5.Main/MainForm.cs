@@ -189,14 +189,14 @@ namespace Lab5.Main
             gym.Y = pictureBox.Height - Properties.Resources.Gym.Height / 2;
         }
 
-        void AddCompetition(string competitionName)
+        void AddCompetition(string competitionName, int maxParticipatingSportmansNumber = 5)
         {
             float x = Properties.Resources.Stadium.Width / 2,
                 y = Properties.Resources.Stadium.Height / 2;
 
             y += competitions.Count() * Properties.Resources.Stadium.Height;
 
-            competitions.Add(new Competition(Notification, sportsmans, sportsmansLocker, x, y, competitionName));
+            competitions.Add(new Competition(Notification, sportsmans, sportsmansLocker, x, y, competitionName, maxParticipatingSportmansNumber));
 
             lock (viewObjectsLocker)
             {
@@ -293,7 +293,13 @@ namespace Lab5.Main
             if (inputCompettionName.ShowDialog() == DialogResult.OK)
                 name = inputCompettionName.Value;
 
-            AddCompetition(name);
+            InputStringDialog inputMaxParticipatingSportmansNumber = new InputStringDialog(new NotNegativeIntValidator(),
+                "Введите максимальное количество спортсменов на соревновании");
+
+            if (inputMaxParticipatingSportmansNumber.ShowDialog() == DialogResult.OK)
+                AddCompetition(name, Int32.Parse(inputMaxParticipatingSportmansNumber.Value));
+            else
+                AddCompetition(name);
         }
     }
 }

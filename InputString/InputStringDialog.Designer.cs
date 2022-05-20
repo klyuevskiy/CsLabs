@@ -50,7 +50,7 @@ namespace InputString
             this.inputStringTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.inputStringTextBox.Location = new System.Drawing.Point(12, 32);
             this.inputStringTextBox.Name = "inputStringTextBox";
-            this.inputStringTextBox.Size = new System.Drawing.Size(377, 26);
+            this.inputStringTextBox.Size = new System.Drawing.Size(525, 26);
             this.inputStringTextBox.TabIndex = 1;
             // 
             // okButton
@@ -79,7 +79,7 @@ namespace InputString
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 117);
+            this.ClientSize = new System.Drawing.Size(549, 117);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.inputStringTextBox);

@@ -8,14 +8,13 @@ namespace InputString
 {
     public class WordValidator : IStringValidator
     {
-        string errorMessage;
-        public string ErrorMessage { get => errorMessage; }
+        public string ErrorMessage { get; private set; }
 
         public bool IsValid(string word)
         {
             if (word == "")
             {
-                errorMessage = "Ввод пустой";
+                ErrorMessage = "Ввод пустой";
                 return false;
             }
 
@@ -24,7 +23,7 @@ namespace InputString
             foreach (char c in word)
                 if (!Char.IsLetter(c))
                 {
-                    errorMessage = "Введены не только буквы";
+                    ErrorMessage = "Введены не только буквы";
                     return false;
                 }
 

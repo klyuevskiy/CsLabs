@@ -9,8 +9,7 @@ namespace InputString
     // Валидатор проверяющий, что строка число типа double
     public class DoubleValidator : IStringValidator
     {
-        string errorMessage = "";
-        public string ErrorMessage { get => errorMessage; }
+        public string ErrorMessage { get; private set; }
 
         public bool IsValid(string str)
         {
@@ -20,7 +19,7 @@ namespace InputString
 
             // строка не double настраиваем сообщение
             if (!isDouble)
-                errorMessage = "Введено не число";
+                ErrorMessage = "Введено не число";
 
             return isDouble;
         }

@@ -12,8 +12,7 @@ namespace InputString
         // число типа int => используем при этом валидатор на int
         IntValidator intValid = new IntValidator();
 
-        string errorMessage;
-        public string ErrorMessage { get => errorMessage; }
+        public string ErrorMessage { get; private set; }
 
         public bool IsValid(string str)
         {
@@ -22,7 +21,7 @@ namespace InputString
             // не число, сразу выход
             if (!isInt)
             {
-                errorMessage = intValid.ErrorMessage;
+                ErrorMessage = intValid.ErrorMessage;
                 return false;
             }
 
@@ -30,7 +29,7 @@ namespace InputString
             bool isValid = Int32.Parse(str) >= 0;
 
             if (!isValid)
-                errorMessage = "Число меньше 0";
+                ErrorMessage = "Число меньше 0";
 
             return isValid;
         }
