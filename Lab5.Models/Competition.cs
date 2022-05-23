@@ -248,7 +248,7 @@ namespace Lab5.Models
             {
                 Notification($"Скоро будет соревнование {Name}");
 
-                Task.Delay(5 * 1000).Wait();
+                Task.Delay(3 * 1000).Wait();
 
                 if (!StartCompetition())
                 {
@@ -262,7 +262,7 @@ namespace Lab5.Models
                 }
 
                 // интервал времени между соревнованиями
-                Task.Delay(10 * 1000).Wait();
+                Task.Delay(5 * 1000).Wait();
             }
         }
     }
