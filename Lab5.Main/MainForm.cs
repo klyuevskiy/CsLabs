@@ -46,9 +46,19 @@ namespace Lab5.Main
         // будем хранить все уведомления, чтобы их постепенно очищать
         List<string> notifications;
 
+        // картинки моделей
+        // лучше сделать ссылки на них, так проще будет изменять код при изменении картинок
+        Image sportsmanImage,
+            doctorImage,
+            gymImage,
+            stadiumImage,
+            hospitalImage;
+
         public MainForm()
         {
             InitializeComponent();
+
+            InitImages();
 
             viewObjects = new List<ViewObject>();
             viewObjectsLocker = new object();
@@ -64,9 +74,18 @@ namespace Lab5.Main
 
             notifications = new List<string>();
 
-            maxCompetitionsNumber = (int)(pictureBox.Height / Properties.Resources.Stadium.Height);
+            maxCompetitionsNumber = (int)(pictureBox.Height / stadiumImage.Height);
 
             competitions = new List<Competition>();
+        }
+
+        void InitImages()
+        {
+            sportsmanImage = Properties.Resources.Sportsman;
+            doctorImage = Properties.Resources.Doctor;
+            gymImage = Properties.Resources.Gym;
+            stadiumImage = Properties.Resources.Stadium;
+            hospitalImage = Properties.Resources.Hospital;
         }
 
         void Notification(string message)
@@ -144,7 +163,7 @@ namespace Lab5.Main
 
             lock(viewModels)
             {
-                viewModels.Add(new ViewModel(newSportsman, Properties.Resources.Sportsman));
+                viewModels.Add(new ViewModel(newSportsman, sportsmanImage));
             }
 
             // запустим спросмена
@@ -169,7 +188,7 @@ namespace Lab5.Main
 
             lock (viewModelsLocker)
             {
-                viewModels.Add(new ViewModel(doctor, Properties.Resources.Doctor));
+                viewModels.Add(new ViewModel(doctor, doctorImage));
             }
 
             Task.Run(doctor.Start);
@@ -180,27 +199,27 @@ namespace Lab5.Main
             // задём центры зданий в завимости от размеров pictureBox и картинок
 
             // больница будет в левом верхнем углу
-            hospital.X = pictureBox.Width - Properties.Resources.Hospital.Width / 2;
-            hospital.Y = Properties.Resources.Hospital.Height / 2;
+            hospital.X = pictureBox.Width - hospitalImage.Width / 2;
+            hospital.Y = hospitalImage.Height / 2;
 
             // тренажёрный зал будет в правом нижнем углу
 
-            gym.X = pictureBox.Width - Properties.Resources.Gym.Width / 2;
-            gym.Y = pictureBox.Height - Properties.Resources.Gym.Height / 2;
+            gym.X = pictureBox.Width - gymImage.Width / 2;
+            gym.Y = pictureBox.Height - gymImage.Height / 2;
         }
 
         void AddCompetition(string competitionName, int maxParticipatingSportmansNumber = 5)
         {
-            float x = Properties.Resources.Stadium.Width / 2,
-                y = Properties.Resources.Stadium.Height / 2;
+            float x = stadiumImage.Width / 2,
+                y = stadiumImage.Height / 2;
 
-            y += competitions.Count() * Properties.Resources.Stadium.Height;
+            y += competitions.Count() * stadiumImage.Height;
 
             competitions.Add(new Competition(Notification, sportsmans, sportsmansLocker, x, y, competitionName, maxParticipatingSportmansNumber));
 
             lock (viewObjectsLocker)
             {
-                viewObjects.Add(new ViewObject(Properties.Resources.Stadium, x, y));
+                viewObjects.Add(new ViewObject(stadiumImage, x, y));
             }
 
             Task.Run(competitions[competitions.Count() - 1].Start);
@@ -223,7 +242,7 @@ namespace Lab5.Main
 
                 sportsmans.Add(newSportsman);
 
-                viewModels.Add(new ViewModel(newSportsman, Properties.Resources.Sportsman));
+                viewModels.Add(new ViewModel(newSportsman, sportsmanImage));
 
                 Task.Run(newSportsman.Start);
             }
@@ -246,7 +265,7 @@ namespace Lab5.Main
                     newDoctor.LastName = "DtLast" + i.ToString();
                     newDoctor.FirstName = "DtFirst" + i.ToString();
 
-                    viewModels.Add(new ViewModel(newDoctor, Properties.Resources.Doctor));
+                    viewModels.Add(new ViewModel(newDoctor, doctorImage));
 
                     Task.Run(newDoctor.Start);
                 }
@@ -266,8 +285,8 @@ namespace Lab5.Main
 
             // create buildings
 
-            hospital = new ViewObject(Properties.Resources.Hospital);
-            gym = new ViewObject(Properties.Resources.Gym);
+            hospital = new ViewObject(hospitalImage);
+            gym = new ViewObject(gymImage);
 
             SetBuildingsSize();
 
